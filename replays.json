@@ -1,0 +1,38 @@
+[
+    {
+        "id": 8519,
+        "youtubeId": "mspu7IosVPU",
+        "originalTitle": "Arcade Legacy Melee Weekly - 10/7/21",
+        "date": "2021-10-08",
+        "tournament": "Arcade Legacy",
+        "player1": "agave",
+        "player1Characters": [],
+        "player2": "stripes",
+        "player2Characters": [],
+        "tags": [
+            "smash",
+            "melee"
+        ],
+        "description": "capture card was acting weird so sorry for skins from my slippi on some parts\n\nbracket link:\nhttps://smash.gg/tournament/arcade-legacy-melee-weekly-10-7-21/event/melee-singles/brackets/1011307/1593889/\n\n0:00 strum vs borg winners r1\n10:16 agave vs stripes winners r2\n15:12 shmo vs terminal winners quarters\n25:10 pink moon vs needlemier winners quarters\n31:48 pink moon vs terminal winners semis\n36:26 larosa vs sam catan winners semis\n47:33 borg vs stripes losers r3\n54:27 larosa vs terminal winners finals\n1:08:10 shmo vs terminal losers finals\n1:20:00 larosa (w) vs shmo grand finals",
+        "replayType": "timestamp",
+        "timestamp": 616,
+        "timestampText": "agave vs stripes winners r2"
+    },
+    {
+        "id": 1011,
+        "tournament": "Gar 27",
+        "date": "2025-02-20",
+        "player1": "Nak",
+        "player1Characters": [
+            "Sheik"
+        ],
+        "player2": "STUNNER VETERAN",
+        "player2Characters": [
+            "Fox"
+        ],
+        "youtubeId": "pvt4NXXbgsQ",
+        "originalTitle": "GAR 27 Singles   LR3   Nak Sheik, STUNNER VETERAN Fox, Falco",
+        "replayType": "full",
+        "description": ""   
+    }
+]
