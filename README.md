@@ -149,26 +149,46 @@ or find the tournament name.
 2. **Conversion to data format**:
 When you're ingesting a bunch of old VODs with different naming conventions, this can be tricky.
 I'd recommend grabbing all the uploads from the channel/playlist you're ingesting from and transforming them
-into something that looks like this:
+into some basic format. There is a script in this repo called ingest.py that can help with this:
 
-```json
-[
-  {
-    "originalTitle": "title"
-    "tags": [
-      "tag1",
-      "tag2"
-    ]
-    "description"
-    "youtubeId"
-  },
-  ...
-]
-```
+#### Using ingest.py
 
-Use the description, title, and tags to filter out unwanted, incompatible, or irrelevant videos.
-Create entries by matching on common formats using regex or something similar. Create entries from
-longer VODs with timestamps by grabbing the description.
+The ingest.py script fetches YouTube video metadata from channels or playlists and manages replay data.
+
+Prerequisites
+
+- Set the YOUTUBE_API_KEY environment variable or pass it via --youtube-api-key
+- Install dependencies: pip install -r requirements.txt
+
+Commands
+
+Ingest videos from YouTube:
+#### Fetch videos from a channel
+python ingest.py ingest CHANNEL_ID
+
+#### Fetch videos from a playlist
+python ingest.py ingest PLAYLIST_ID -t playlist
+
+#### Resume from a specific index (useful after API limits)
+python ingest.py ingest CHANNEL_ID --start-index 500
+
+#### Customize batch size and max results
+python ingest.py ingest CHANNEL_ID -b 100 -m 1000
+
+Filter replay data:
+#### Filter by exact match
+python ingest.py filter channelId "UC123ABC"
+
+#### Filter with operations (equals, contains, startswith, endswith, regex, greater, less)
+python ingest.py filter tags "tournament" -o contains
+
+#### Exclude matches with --negate
+python ingest.py filter date "2024" -o startswith -n
+
+#### Preview changes without saving
+python ingest.py filter originalTitle "Grand Finals" -o contains --dry-run
+
+All commands save to replays.json by default. Use -o filename.json to specify a different file.
 
 3. **Add to existing data**:
 Once you merge new data into the existing replays.json, make sure to index properly so each entry
