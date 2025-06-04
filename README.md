@@ -140,7 +140,7 @@ Simply use the provided `index.html` file as-is.
 ### Ingesting data
 
 1. **YouTube Data API**:
-You'll need a (YouTube Data API key)[https://developers.google.com/youtube/v3/getting-started] to get started.
+You'll need a [YouTube Data API key](https://developers.google.com/youtube/v3/getting-started) to get started.
 Then, you'll pull down the uploads from a channel or playlist. To get the channel ID easily, go to a channel,
 open up the developer console, then search the page source for "og:url". I'd recommend pulling down the video
 tags as well, since sometimes VODs will have important info there that can help you filter out non-Melee VODs
@@ -176,4 +176,8 @@ has a unique ID.
 
 ## Hosting your website
 
-Since everything is stored client-side, I'd recommend using either GitHub Pages or (hosting a static website on Google Cloud)[https://cloud.google.com/storage/docs/hosting-static-website].
+Since everything is stored client-side, I'd recommend using either GitHub Pages or [hosting a static website on Google Cloud](https://cloud.google.com/storage/docs/hosting-static-website).
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
