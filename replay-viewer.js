@@ -79,8 +79,8 @@
 
             // Sort by upload date (newest first)
             replayData.sort((a, b) => {
-                const dateA = new Date(a.uploadDate || '1970-01-01');
-                const dateB = new Date(b.uploadDate || '1970-01-01');
+                const dateA = new Date(a.date || '1970-01-01');
+                const dateB = new Date(b.date || '1970-01-01');
                 return dateB - dateA;
             });
 
