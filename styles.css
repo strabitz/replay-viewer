@@ -22,8 +22,17 @@
     --border-radius-lg: 0.75rem;
 }
 
+body {
+    background-color: var(--background-color);
+}
+
 * {
     box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-primary);
 }
 
 /* Main container */
@@ -49,6 +58,8 @@
 }
 
 .replay-search-input {
+    background-color: var(--background-color);
+    color: var(--text-primary);
     flex: 1;
     min-width: 250px;
     padding: var(--spacing-md);
