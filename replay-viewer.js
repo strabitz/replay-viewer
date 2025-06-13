@@ -62,16 +62,16 @@
     async function loadData() {
         try {
             loadingMessage.style.display = 'block';
-
+            
             const [replaysResponse, aliasesResponse] = await Promise.all([
                 fetch(config.dataUrl),
                 fetch(config.aliasesUrl)
             ]);
 
             if (!replaysResponse.ok) throw new Error('Failed to load replays');
-
+            
             replayData = await replaysResponse.json();
-
+            
             // Load aliases if available
             if (aliasesResponse.ok) {
                 playerAliases = await aliasesResponse.json();
@@ -105,11 +105,11 @@
         const div = document.createElement('div');
         div.className = 'replay-item';
 
-        const player1Chars = (replay.player1Characters || []).map(char =>
+        const player1Chars = (replay.player1Characters || []).map(char => 
             characterIcons[char.trim().toLowerCase().replace(/\s+/g, "")] || "❓"
         ).join(' ');
 
-        const player2Chars = (replay.player2Characters || []).map(char =>
+        const player2Chars = (replay.player2Characters || []).map(char => 
             characterIcons[char.trim().toLowerCase().replace(/\s+/g, "")] || "❓"
         ).join(' ');
 
@@ -136,9 +136,9 @@
         // Click handler for video toggle
         div.addEventListener('click', (e) => {
                 if (e.target.closest('.replay-video')) return;
-
+                
                 const videoContainer = div.querySelector('.replay-video');
-
+                
             // Close other open videos
             document.querySelectorAll('.replay-video.show').forEach(v => {
                 if (v !== videoContainer) unloadVideo(v);
@@ -150,7 +150,7 @@
                 unloadVideo(videoContainer);
             }
         });
-
+        
         return div;
     }
 
@@ -166,12 +166,12 @@
 
         const iframe = document.createElement('iframe');
         let embedUrl = `https://www.youtube.com/embed/${youtubeId}`;
-
+        
         // Add timestamp if available
         if (timestamp && timestamp !== 'undefined') {
             embedUrl += `?start=${timestamp}`;
         }
-
+        
         iframe.src = embedUrl;
         iframe.title = 'YouTube video player';
         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
@@ -242,14 +242,14 @@
         // Page numbers
         const pageNumbers = [];
         pageNumbers.push(1);
-
+        
         const startAround = Math.max(2, currentPage - 2);
         const endAround = Math.min(totalPages - 1, currentPage + 2);
-
+        
         for (let p = startAround; p <= endAround; p++) {
             pageNumbers.push(p);
         }
-
+        
         if (totalPages > 1) pageNumbers.push(totalPages);
 
         // Remove duplicates and sort
@@ -279,7 +279,7 @@
     // Search functionality
     function performSearch() {
         const searchTerm = searchInput.value.trim();
-
+        
         if (!searchTerm) {
             displayReplays(replayData);
             return;
@@ -289,37 +289,37 @@
 
         setTimeout(() => {
             loadingMessage.style.display = 'none';
-
+            
             const searchPieces = searchTerm.toLowerCase().split(/\s+/);
-
+            
             const filtered = replayData.filter(replay => {
                 if (!replay.player1 || !replay.player2) return false;
-
+                
                 const searchableText = `${replay.player1} ${replay.player2} ${(replay.player1Characters || []).join(' ')} ${(replay.player2Characters || []).join(' ')} ${replay.tournament}`.toLowerCase();
-
+                
                 return searchPieces.every(piece => {
                     // Check aliases
                     const aliases = getPlayerAliases(piece);
                     if (aliases.length > 0) {
                         return aliases.some(alias => {
                             const lowerAlias = alias.toLowerCase();
-                            return replay.player1.toLowerCase() === lowerAlias ||
+                            return replay.player1.toLowerCase() === lowerAlias || 
                                    replay.player2.toLowerCase() === lowerAlias ||
                                    searchableText.includes(lowerAlias);
                         });
                     }
-
+                    
                     // Check if it's a character
                     if (characterIcons[piece]) {
                         const regex = new RegExp(`\\b${piece}\\b`);
                         return regex.test(searchableText);
                     }
-
+                    
                     // Default search
                     return searchableText.includes(piece);
                 });
             });
-
+            
             displayReplays(filtered);
         }, 200);
     }
@@ -327,18 +327,18 @@
     // Get player aliases
     function getPlayerAliases(searchTerm) {
         const normalized = searchTerm.toLowerCase().trim();
-
+        
         if (playerAliases[normalized]) {
             return playerAliases[normalized];
         }
-
+        
         for (const [mainPlayer, aliases] of Object.entries(playerAliases)) {
             const normalizedAliases = aliases.map(alias => alias.toLowerCase().trim());
             if (normalizedAliases.includes(normalized)) {
                 return aliases;
             }
         }
-
+        
         return [];
     }
 
